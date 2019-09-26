@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form  method="POST" enctype="multipart/form-data"  id="ff">
+    文件:<input type="file" name="file    "  multiple="multiple" id="file" ><br/>
+   <!-- 密码:<input type="file" name="f"  multiple="multiple"><br/>-->
+    <input type="button"    value="上传">
+</form>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(":button").click(function () {
+            var formData = new FormData($('#ff')[0]);
+            console.log(formData.values());
+
+            $.ajax({
+                // cache:true,//缓存
+                type: "POST",
+                dataType: "json",
+                data: formData,
+                url: "http://localhost:8080/management_war/file",
+                processData: false,//告诉jquery不要去处理请求的数据格式
+                contentType: false,//告诉jquery不要设置请求头的类型
+            }).success(function (data) {
+                console.log(data);
+            }).error(function (data) {
+
+                console.log(data);
+            });
+        });
+    });
+</script>
+</body>
+</html>
