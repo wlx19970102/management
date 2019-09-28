@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService {
         login.setLastLoginTime();
         String lastLoginTime = login.getLastLoginTime();
         System.out.println("lasttime:"+lastLoginTime);
-        update.set("lastLoginTime",lastLoginTime);
+        update.set("login.lastLoginTime",lastLoginTime);
         UpdateResult updateResult = mongoTemplate.updateFirst(query, update, User.class);
         if (updateResult.wasAcknowledged()){
             System.out.println("sssss");
